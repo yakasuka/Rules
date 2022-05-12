@@ -142,8 +142,16 @@ https://raw.githubusercontent.com/app2smile/rules/master/module/tieba-qx.conf, t
 https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Rewrite/Block/Advertising.conf, tag=神机去广告, update-interval=172800, opt-parser=true, enabled=true
 https://raw.githubusercontent.com/NobyDa/Script/master/QuantumultX/Rewrite_lhie1.conf, tag=lhie1去广告, update-interval=172800, opt-parser=false, enabled=false
 https://raw.githubusercontent.com/DivineEngine/Profiles/master/Quantumult/Rewrite/Block/AdvertisingPlus.conf, tag=去广告脚本, update-interval=172800, opt-parser=false, enabled=true
-
 [server_local]
+shadowsocks=148.100.78.174:51900, method=aes-256-gcm, password=uch4LfztUy, fast-open=false, udp-relay=false, tag=SHADOWSOCKS
+[server_remote]
+https://ghelper.me/rss/185818f82fe6eb022a424ad6b1a6a6c1?app=qx, tag=qx, img-url=globe.americas.fill.system, update-interval=172800, opt-parser=true, enabled=true
+https://dingyue.suying666.info/link/vrSp0MMpQNPfbX2f?sub=3, tag=suying, update-interval=172800, opt-parser=true, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/OvO.png, enabled=true
+https://api.ikuuu.science/link/elVMKUI0kmkPyWyY?sub=3&extend=1, tag=ikuuu, update-interval=172800, opt-parser=true, enabled=true
+https://api.flgwls.com/link/JnDsNMPBiLaHVhJH?sub=1&extend=1, tag=new, update-interval=172800, opt-parser=true, enabled=true
+https://www.osos.ml/ssrvip.txt, tag=vip, update-interval=172800, opt-parser=true, enabled=true
+https://bihai.cf/https/gen4/clash.yaml, tag=gen4, update-interval=172800, opt-parser=true, enabled=true
+https://suo.yt/NWQnpAm, tag=7.15, update-interval=172800, opt-parser=true, enabled=true
 
 # [本地分流规则部分]
 [filter_local]
@@ -157,10 +165,13 @@ geoip, cn, direct
 final, Final
 
 [rewrite_local]
+# tata视频
+^http:\/\/j9700\.xinxindaka\.com\/api\/public\/\?service=Live\.checkLive url script-response-body https://raw.githubusercontent.com/reapple/quantumult_js/main/tata.js
 # 微博去广告
 ^https?://m?api\.weibo\.c(n|om)/2/(statuses/(unread|extend|positives/get|(friends|video)(/|_)timeline)|stories/(video_stream|home_list)|(groups|fangle)/timeline|profile/statuses|comments/build_comments|photo/recommend_list|service/picfeed|searchall|cardlist|page|\!/photos/pic_recommend_status) url script-response-body https://raw.githubusercontent.com/yichahucha/surge/master/wb_ad.js
 ^https?://(sdk|wb)app\.uve\.weibo\.com(/interface/sdk/sdkad.php|/wbapplua/wbpullad.lua) url script-response-body https://raw.githubusercontent.com/yichahucha/surge/master/wb_launch.js
-
+#yt自动翻译
+https:\/\/www.youtube.com\/api\/timedtext\?.+&lang=en.+?((?!&tlang=zh\-Hans).)*$ url request-header \sHTTP/1\.1(\r\n) request-header &tlang=zh-Hans HTTP/1.1$1
 [task_local]
 # GeoIP 查询
 event-interaction https://raw.githubusercontent.com/KOP-XIAO/QuantumultX/master/Scripts/geo_location.js, tag=GeoIP 查询, img-url=location.fill.viewfinder.system, enabled=true
